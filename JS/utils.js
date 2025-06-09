@@ -1,4 +1,4 @@
-let timeLeft = 10;
+let timeLeft = 120;
 let endScreen  = document.querySelector(".endScreen");
 
 function Time() {
