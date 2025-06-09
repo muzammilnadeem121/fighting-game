@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Press Start 2P",sans-serif;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+canvas{
+    display: block;
+}
+.wrapper{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+}
+.header{
+    position: absolute;
+    display: none;
+    width: 100%;
+    z-index: 1;
+    align-items: center;
+    padding: 40px 20px;
+}
+.playerHPContainer,.enemyHPContainer{
+    background-color: #b4c6f5;
+    width: 100%;
+    height: 35px;
+}
+.playerHPContainer{
+    display: flex;
+    justify-content: end;
+    border-top: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+}
+.enemyHPContainer{
+    border-top: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+}
+.playerHP,.enemyHP{
+    background-color: #ce2038;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: 0.2s ease-out all;
+}
+.timer{
+    background-color: #262121;
+    width: 10%;
+    flex-shrink: 0;
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 3px solid #ddd;
+}
+.timer span{
+    color: white;
+    font-size: 1rem;
+   font-weight: bolder;
+}
+.endScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    transition: .2s ease-in-out all;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.164);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+}
+.result{
+    font-weight: bolder;
+    font-size: 3rem;
+    color: white;
+}
+.endScreen button{
+    width: 150px;
+    height: 50px;
+    background-color: #ce2038;
+    cursor: pointer;
+    border: none;
+    box-shadow: 2px 2px 15px -5px black;
+    font-size: 1rem;
+}
+.playerHP::after,.enemyHP::after {
+  content: "";
+  position: relative;
+  display: block;
+  top: 0;
+  left: -100%;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: glow 2s infinite 5s;
+}
+
+@keyframes glow {
+  100% {
+    left: 100%;
+  }
+}
+#menuScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    transition: .2s ease-in-out all;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url("./assets/background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+#menuScreen button{
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    background: radial-gradient(#b4c6f5, 50%, #715c89);
+    border: 5px solid #61536d;
+    border-radius: 5px;
+    margin: 20px;
+    cursor: pointer;
+    color: white;
+}
