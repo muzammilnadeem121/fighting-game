@@ -14,12 +14,15 @@ c.fillRect(0,0,canvas.width,canvas.height);
 const background = new Sprite({position: {x: 0,y: 0},imageSrc: "./assets/background.png",scale:1,width:canvas.width,height:canvas.height});
 const shop = new Sprite({position: {x: (canvas.width - 400),y: (canvas.height-450)},imageSrc: "./assets/shop.png",scale:2.7,framesMax:6})
 // create Player
-const player = new Fighter({position:{x: 100,y: 0},velocity:{x: 0,y: 0},imageSrc: "./assets/samuraiMack/Idle.png",framesMax:8,scale:3.8,offset:{x:0,y:95},sprites:{Idle:{imageSrc:"./assets/samuraiMack/Idle.png",framesMax:8},Run:{imageSrc:"./assets/samuraiMack/Run.png",framesMax:8},Jump:{imageSrc:"./assets/samuraiMack/Jump.png",framesMax:2},Fall:{imageSrc:"./assets/samuraiMack/Fall.png",framesMax:2},Attack1:{imageSrc:"./assets/samuraiMack/Attack1.png",framesMax:6},TakeHit:{imageSrc:"./assets/samuraiMack/Take Hit.png",framesMax:4},Death:{imageSrc:"./assets/samuraiMack/Death.png",framesMax:6}},AttackBox:{offset:{x:100,y:400},width:150,height:50}});
+const player = new Fighter({position:{x: 100,y: 0},velocity:{x: 0,y: 0},imageSrc: "./assets/samuraiMack/Idle.png",framesMax:8,scale:3.5,offset:{x:0,y:80},sprites:{Idle:{imageSrc:"./assets/samuraiMack/Idle.png",framesMax:8},Run:{imageSrc:"./assets/samuraiMack/Run.png",framesMax:8},Jump:{imageSrc:"./assets/samuraiMack/Jump.png",framesMax:2},Fall:{imageSrc:"./assets/samuraiMack/Fall.png",framesMax:2},Attack1:{imageSrc:"./assets/samuraiMack/Attack1.png",framesMax:6},TakeHit:{imageSrc:"./assets/samuraiMack/Take Hit.png",framesMax:4},Death:{imageSrc:"./assets/samuraiMack/Death.png",framesMax:6}},AttackBox:{offset:{x:450,y:400},width:150,height:50}});
 // create Enemy
-const enemy = new Fighter({position:{x: (canvas.width - 100),y: 0},velocity:{x:0,y:0},imageSrc: "./assets/kenji/Idle.png",framesMax:4,scale:3.4,offset:{x:0,y:70},sprites:{Idle:{imageSrc:"./assets/kenji/Idle.png",framesMax:4},Run:{imageSrc:"./assets/kenji/Run.png",framesMax:8},Jump:{imageSrc:"./assets/kenji/Jump.png",framesMax:2},Fall:{imageSrc:"./assets/kenji/Fall.png",framesMax:2},Attack1:{imageSrc:"./assets/kenji/Attack1.png",framesMax:4},TakeHit:{imageSrc:"./assets/kenji/Take hit.png",framesMax:3},Death:{imageSrc:"./assets/kenji/Death.png",framesMax:7}},AttackBox:{offset:{x:0,y:400},width:150,height:50}});
+const enemy = new Fighter({position:{x: (canvas.width - 100),y: 0},velocity:{x:0,y:0},imageSrc: "./assets/kenji/Idle.png",framesMax:4,scale:3.4,offset:{x:0,y:70},sprites:{Idle:{imageSrc:"./assets/kenji/Idle.png",framesMax:4},Run:{imageSrc:"./assets/kenji/Run.png",framesMax:8},Jump:{imageSrc:"./assets/kenji/Jump.png",framesMax:2},Fall:{imageSrc:"./assets/kenji/Fall.png",framesMax:2},Attack1:{imageSrc:"./assets/kenji/Attack1.png",framesMax:4},TakeHit:{imageSrc:"./assets/kenji/Take hit.png",framesMax:3},Death:{imageSrc:"./assets/kenji/Death.png",framesMax:7}},AttackBox:{offset:{x:100,y:400},width:150,height:50}});
 
 function animate(){
     window.requestAnimationFrame(animate);
+
+    player.stayWithinCanvas(canvas.width)
+    enemy.stayWithinCanvas(canvas.width)
 
     c.fillStyle = "black";
     c.fillRect(0,0,canvas.width,canvas.height);
@@ -107,12 +110,12 @@ function animate(){
         enemy.switchSprites("Fall");
     }
 }
+animate();
 
 function init() {
     document.getElementById("menuScreen").style.display = "none";
     document.querySelector(".header").style.display = "flex";
     Time();
-    animate();
 }
 
 window.addEventListener("keydown",(e)=>{

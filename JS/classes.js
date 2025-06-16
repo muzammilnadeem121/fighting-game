@@ -19,7 +19,7 @@ class Sprite{
         };
     };
     draw(){
-        c.drawImage(this.image, this.framesCurrent*(this.image.width/this.framesMax) , 0 , (this.image.width/this.framesMax),this.image.height,this.position.x + this.offset.x,this.position.y + this.offset.y,this.width,this.height)
+        c.drawImage(this.image, this.framesCurrent*(this.image.width/this.framesMax) , 0 , (this.image.width/this.framesMax),this.image.height,this.position.x,this.position.y + this.offset.y,this.width,this.height)
     }
     animateFrames(){
         this.framesElapsed++;
@@ -154,13 +154,21 @@ class Fighter extends Sprite{
         }
 
     }
+    stayWithinCanvas(canvasWidth) {
+        const minX = -this.offset.x + 10;
+        const maxX = canvasWidth - this.width + this.offset.x - 10;
+
+        if (this.position.x < minX) this.position.x = minX;
+        if (this.position.x > maxX) this.position.x = maxX;
+    }
     update(){
         this.draw();
         if (this.isAlive) {
-            this.animateFrames();            
+            this.animateFrames();
         }
         this.AttackBox.position.x = this.position.x + this.AttackBox.offset.x;
         this.AttackBox.position.y = this.position.y + this.AttackBox.offset.y;
+        c.fillRect(this.AttackBox.position.x,this.AttackBox.position.y,this.AttackBox.width,this.AttackBox.height);
 
         this.onGround = this.position.y + this.height>= canvas.height + this.offset.y && this.velocity.y >= 0;
 
@@ -172,8 +180,6 @@ class Fighter extends Sprite{
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
         
-
-        if (this.position.x <= 0) this.position.x = 0;
-        if (this.position.x + this.width >= canvas.width - this.offset.x) this.position.x = canvas.width - this.width;
+        
     }
 };
